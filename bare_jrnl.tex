@@ -29,7 +29,7 @@ amplificador BJT, respuesta en frecuencia, frecuencia crítica inferior, frecuen
 
 \section{Introduction}
 \IEEEPARstart{L}{os}
-amplificadores Een configuración de emisor común con transistor BJT es una de las topologías más empleadas en el diseño de circuitos. En esta configuración, la señal de entrada se aplica a la base, el emisor actúa como punto de referencia y la salida se extrae del colector. 
+amplificadores en configuración de emisor común con transistor BJT es una de las topologías más empleadas en el diseño de circuitos. En esta configuración, la señal de entrada se aplica a la base, el emisor actúa como punto de referencia y la salida se extrae del colector. 
 \par En la Parte 1, se analiza la respuesta en baja frecuencia de un amplificador BJT de una etapa. La respuesta debido a cada capacitor es medida, un capacitor a la vez, usando el método descrito en el procedimiento. Con ello se calcula el valor de la capacitancia que puede ser usada como capacitor de acople para bajar la frecuencia de corte mínima a 300Hz.
 \par En la Parte 2, se investiga sobre la respuesta en alta frecuencia. En este caso, el efecto Miller capacitivo tiene un gran impacto sobre la respuesta en frecuencia de los amplificadores inversores. Típicamente, la capacitancia interna entre dos electrodos es únicamente importante a frecuencias superiores a 1MHz.Para reducir estas frecuencias se puede lograr con un equipo de laboratorio básico y utilizando una capacitancia externa que se coloca entre las terminales del transistor.
 
@@ -68,7 +68,7 @@ amplificadores Een configuración de emisor común con transistor BJT es una de 
 \par Se procedió con la construcción del circuito amplificador en emisor común para respuesta en baja frecuencia, según lo ilustrado en la Figura 1. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{Media/amplificador_emisor_común.png}
+    \includegraphics[width=0.5\textwidth]{amplificador_emisor_común.png}
     \caption{Amplificador en emisor común para respuesta en baja frecuencia.}
     \label{fig:amplificador_emisor_común.}
 \end{figure}
@@ -100,7 +100,7 @@ amplificadores Een configuración de emisor común con transistor BJT es una de 
 \par Posteriormente, se utilizaron las puntas del osciloscopio para observar simultáneamente la señal de entrada y la señal de salida en corriente alterna (CA), con el fin de analizar su comportamiento dinámico, según lo ilustrado en la Figura 2. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{Media/onda_entrada_salida.png}
+    \includegraphics[width=0.5\textwidth]{onda_entrada_salida.png}
     \caption{Onda entrada vs salida.}
     \label{fig:onda_entrada_salida.}
 \end{figure}
@@ -130,7 +130,7 @@ amplificadores Een configuración de emisor común con transistor BJT es una de 
 \par Ahora, para analizar la respuesta en baja frecuencia del amplificador, en primer lugar se determinó la resistencia equivalente vista por el capacitor de acoplo en la entrada (C1), según se ilustra en la Figura 3.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{Media/rutas_carga_descarga.png}
+    \includegraphics[width=0.5\textwidth]{rutas_carga_descarga.png}
     \caption{Amplificador en emisor común: Rutas de carga y descarga.}
     \label{fig:rutas_carga_descarga}
 \end{figure}
@@ -219,10 +219,127 @@ f_{c1,\mathrm{nuevo}}
 \newline
 \\
 \textbf{Amplificador en emisor común para respuesta en alta frecuencia}
-\par xxxxxxxxxxxxxxxxxxxxxxxx
+\par A continuación se analiza la respuesta en alta frecuencia del amplificador BJT implementado, considerando principalmente el efecto Miller y la influencia de las capacitancias parásitas. El circuito base utilizado corresponde a la Figura \ref{fig:amplificador_emisor_común.}, con la adición de los capacitores C4, C5 y C6, los cuales permiten reducir la frecuencia crítica superior y así facilitar su medición.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{amplificador2.png}
+    \caption{Amplificador en emisor común para respuesta en al frecuencia.}
+    \label{fig:amplificador2}
+\end{figure}
+\par Se realizaron los cálculos experimentales de los parámetros en CD y CA del circuito para compararlos en la siguiente tabla con los valores teóricos calculados con anterioridad.
+\begin{table}[h]
+    \caption{Comparación parámetros CD y CA para el amplificador en emisor común alta frecuencia}
+    \centering
+    \renewcommand{\arraystretch}{1.2} % Ajusta la altura de las filas
+    \begin{tabular}{|l|p{2cm}|p{2cm}|p{2cm}|}
+        \hline
+        & \textbf{Valor Teórico} & \textbf{Valor Experimental} & \textbf{Porcentaje de error [\%]} \\
+        \hline
+        \( V_B \) & 1.92 V  & 1.79 V  & 6.7 \\
+        \hline
+        \( V_E \) & 1.22 V   & 1.13 V  & 7.3 \\
+        \hline
+        \( V_C \) & 6.63 V & 7.27 V & 9.6 \\
+        \hline
+        \( I_E \) & 2.15m A & 2m A & 6.9 \\
+        \hline
+        \( V_{CE} \) & 5.41 V & 6.14 V & 13.5 \\
+        \hline
+        \( r'_{e} \) & 11.5 $\Omega$ & 12.5 $\Omega$ & 8.7 \\
+        \hline
+        \( A_{v} \) & -129.7   & -116.5  & 10.2 \\
+        \hline
+        \( V_{out} \) & 29.29 V & 2.33 V & - \\
+        \hline
+    \end{tabular}
+    \label{tab:parámetrosCDyCA}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{fig2.png}
+    \caption{Señal de entrada y salida del osciloscopio}
+    \label{fig:fig2}
+\end{figure}
+
+\par Se observa que los porcentajes de error obtenidos en la parte de alta frecuencia del experimento son significativamente mayores que los reportados en la etapa de baja frecuencia, alcanzando un máximo del 13.5\%. Estas discrepancias pueden atribuirse a diversos factores, entre ellos el \textit{efecto Miller}, que incrementa de forma considerable las capacitancias de entrada y salida en función de la ganancia del amplificador, amplificando así cualquier desviación respecto al valor teórico. Además, la tolerancia de los componentes electrónicos utilizados, particularmente los capacitores y resistencias, puede introducir variaciones que afectan directamente la respuesta del circuito. A esto se suman las limitaciones del equipo de medición.
+
+A pesar de estos porcentajes relativamente altos, los resultados siguen siendo coherentes y confiables, ya que en el análisis de alta frecuencia es común encontrar desviaciones más marcadas entre el modelo ideal y el comportamiento real del circuito. ``A frecuencias altas, las características internas de los dispositivos activos, como las capacitancias de unión y las inductancias de conexión, comienzan a dominar el comportamiento del circuito, haciendo que los modelos de baja frecuencia sean cada vez menos precisos'' [1].
+
+\par Seguidamente se calculó la capacitancia de entrada $C_{\text{ent}}$, considerando la suma de la capacitancia base-emisor y la capacitancia de entrada de Miller asociada al capacitor $C_4$, se utilizó la siguiente expresión:
+
+\begin{equation}
+C_{\text{ent}} = C_6 + C_4(|A_v| + 1)
+\end{equation}
+
+Posteriormente, se determinó la resistencia equivalente de entrada $R_{\text{eq(ent)}}$, correspondiente a la descarga de esta capacitancia, modelada como una red de resistencias en paralelo, para obtener este cálculo, se utilizó $R_{th}$= 50 $\Omega$ :
+
+\begin{equation}
+R_{\text{eq(ent)}} = (R_A + R_{th}) \parallel R_B \parallel R_1 \parallel R_2 \parallel \left(\beta_{ac} (R_{E1}+r_e)\right)
+\end{equation}
+
+Con ambos valores se calculó la frecuencia crítica superior en la etapa de entrada mediante el modelo RC:
+
+\begin{equation}
+f_{c(\text{ent})} = \frac{1}{2\pi R_{\text{eq(ent)}} C_{\text{ent}}}
+\end{equation}
+
+Para la etapa de salida, se calculó la capacitancia equivalente $C_{\text{sal}}$ como la suma de $C_5$ y el término de Miller asociado a $C_4$:
+
+\begin{equation}
+C_{\text{sal}} = C_5 + C_4 \left( \frac{|A_v| + 1}{|A_v|} \right)
+\end{equation}
+
+La resistencia de descarga vista por esta capacitancia es simplemente:
+
+\begin{equation}
+R_C = RC \parallel RL
+\end{equation}
+
+Y con ella, se obtuvo la frecuencia crítica superior de la etapa de salida:
+
+\begin{equation}
+f_{c(\text{sal})} = \frac{1}{2\pi R_C C_{\text{sal}}}
+\end{equation}
+
+Finalmente, la frecuencia crítica superior general del amplificador $f_{cu}$ se calculó mediante la regla del producto sobre la suma, que aproxima el efecto combinado de ambas etapas:
+
+\begin{equation}
+f_{cu} = \frac{f_{c(\text{ent})} \cdot f_{c(\text{sal})}}{f_{c(\text{ent})} + f_{c(\text{sal})}}
+\end{equation}
+
+Todos estos resultados teóricos se resumen en la Tabla~\ref{tab:parámetrosdc}.
+\begin{table}[H]
+\centering
+\caption{Mediciones para respuesta en alta frecuencia}
+\label{tab:parámetrosdc}
+\begin{tabular}{|l|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Parámetro} & \textbf{Valor calculado} & \textbf{Valor medido} \\
+\hline
+$C_{\text{ent}}$     & 13.17 nF       & ---         \\
+\hline
+$R_{\text{eq(ent)}}$ & 44.29 $\Omega$ & ---         \\
+\hline
+$f_{c(\text{ent})}$  & 273 kHz        & ---         \\
+\hline
+$C_{\text{sal}}$     & 200.77 pF      & ---         \\
+\hline
+$R_C$                & 4.08 k$\Omega$ & ---         \\
+\hline
+$f_{c(\text{sal})}$  & 194.29 kHz     & ---         \\
+\hline
+$f_{cu}$             & 113.5 kHz      & 143 kHz     \\
+\hline
+\end{tabular}
+\end{table}
+
+\par La diferencia entre la frecuencia crítica superior teórica ($f_{cu} = 113.5$ kHz) y la experimental ($f_{cu} = 143$ kHz) puede atribuirse a factores como tolerancias de los componentes. Sin embargo, ambos valores se encuentran dentro del mismo orden de magnitud, lo que valida la aproximación teórica utilizada.
+
 
 \section{Conclusion}
 \par El análisis de la respuesta en baja frecuencia ha demostrado que el modelo teórico describe con gran fidelidad el comportamiento del amplificador: las resistencias equivalentes calculadas para cada capacitor coincidieron con las medidas, con discrepancias menores al 0,3\%, y las frecuencias de corte obtenidas en el experimento guardaron una excelente correlación con las predicciones. Se comprobó que el capacitor de entrada (\(C_1\)) es el que fija el límite inferior de la banda de paso, pues su efecto se hace notar primero al reducir la frecuencia, mientras que los demás capacitores apenas alteran la ganancia hasta niveles mucho más bajos. Para desplazar la frecuencia de corte general hasta el valor deseado, bastó con incrementar la capacitancia de acoplo de \(C_2\), sin necesidad de modificar la polarización ni otros componentes. Esto confirma que, en etapas de amplificación, el control de la respuesta en baja frecuencia puede lograrse de forma sencilla y precisa mediante el ajuste del valor de los condensadores de acoplo.
+\par El análisis de la respuesta en alta frecuencia del amplificador BJT permitió comprobar la influencia significativa del efecto Miller y de las capacitancias parásitas internas del transistor en el comportamiento dinámico del circuito. A través del cálculo y comparación de parámetros como $C_{\text{ent}}$, $C_{\text{sal}}$, sus resistencias asociadas y las frecuencias críticas resultantes, se evidenció cómo la ganancia afecta directamente el rango de operación del amplificador.
+\par Por otro lado, aunque el modelo teórico presenta ciertas simplificaciones, los resultados experimentales obtenidos se consideran adecuados. La diferencia observada entre la frecuencia crítica superior calculada (113.5~kHz) y la medida en el laboratorio (143~kHz) puede deberse a variaciones en los valores reales de los componentes, así como a la sensibilidad del circuito a altas frecuencias y a las limitaciones del equipo utilizado para las mediciones. A pesar de esta discrepancia, ambos valores se encuentran en el mismo orden de magnitud, lo que permite afirmar que el modelo teórico ofrece una estimación válida del comportamiento del sistema.
 
 
 \appendices
@@ -373,5 +490,3 @@ C_{2,\mathrm{nuevo}}
 C. K. Alexander and M. N. O. Sadiku, \textit{Fundamentos de circuitos eléctricos}. México ; Madrid Etc.: McGraw-Hill, 2018.
 \end{thebibliography}
 \end{document}
-
-
